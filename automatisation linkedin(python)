@@ -1,0 +1,33 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Set up the Chrome WebDriver
+driver = webdriver.Chrome()
+
+# Open the company's website
+driver.get("https://www.example.com")
+
+# Wait for the email input field to be visible
+email_field = WebDriverWait(driver, 10).until(
+    EC.visibility_of_element_located((By.ID, "session_key"))
+)
+
+# Clear the email field (if needed) and enter your email address
+email_field.clear()
+email_field.send_keys("your_email@example.com")
+
+# Wait for the password input field to be present in the DOM
+password_field = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.ID, "password"))
+)
+
+# Clear the password field (if needed) and enter your password
+password_field.clear()
+password_field.send_keys("your_password")
+
+# Submit the form or perform other actions as needed
+
+# Close the browser
+driver.quit()
